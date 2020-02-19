@@ -1,13 +1,12 @@
 <template>
-  <div>
+  <v-container fluid>
     <TaskListItem
       v-for="(task, index) in toShow"
       :task="task"
       :key="index"
       @deleteTask="onDeleteTask"
-      @toggleTask="onToggleTask"
     />
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -36,13 +35,7 @@ export default {
   methods: {
     onDeleteTask(task) {
       this.$emit("deleteTask", task);
-    },
-    onToggleTask(task) {
-      this.$emit("toggleTask", task);
     }
   }
 };
 </script>
-
-<style scoped>
-</style>

@@ -1,7 +1,16 @@
 <template>
-  <form @submit="onAddTask">
-    <input type="text" v-model="userInput" placeholder="Add a new task" required />
-  </form>
+  <v-form @submit="onAddTask">
+    <v-text-field
+      v-model="userInput"
+      placeholder="Add a new task"
+      clearable
+      full-width
+      outlined
+      prepend-inner-icon="edit"
+      rounded
+      hide-details
+    />
+  </v-form>
 </template>
 
 <script>
@@ -22,6 +31,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>

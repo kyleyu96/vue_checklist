@@ -1,14 +1,29 @@
 <template>
   <v-app>
-    <h1>Checklist</h1>
-    <NewTask @addTask="onAddTask" />
-    <TaskList
-      :tasks="tasks"
-      :filter="filter"
-      @deleteTask="onDeleteTask"
-      @toggleTask="onToggleTask"
-    />
-    <Filters :filter="filter" @filterChange="onFilterChange" />
+    <v-content>
+      <v-container fluid class="app-container">
+        <v-row align="start" justify="center">
+          <v-col cols="12" sm="10" md="6">
+            <v-card class="elevation-12">
+              <v-toolbar color="primary" dark flat>
+                <v-spacer></v-spacer>
+                <v-toolbar-title>Checklist</v-toolbar-title>
+                <v-spacer></v-spacer>
+              </v-toolbar>
+              <v-card-text>
+                <NewTask @addTask="onAddTask" />
+                <TaskList
+                  :tasks="tasks"
+                  :filter="filter"
+                  @deleteTask="onDeleteTask"
+                />
+              </v-card-text>
+              <Filters :filter="filter" @filterChange="onFilterChange" />
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
   </v-app>
 </template>
 
@@ -40,10 +55,13 @@ export default {
     onDeleteTask(task) {
       const index = this.tasks.findIndex(t => t === task);
       this.tasks.splice(index, 1);
-    },
-    onToggleTask(task) {
-      task.isDone = !task.isDone;
     }
   }
 };
 </script>
+
+<style scoped>
+.app-container {
+  padding: 15vh 0;
+}
+</style>

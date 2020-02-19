@@ -1,9 +1,16 @@
 <template>
-  <div>
-    <input type="checkbox" :checked="task.isDone" @change="onToggleTask" />
-    <span>{{task.name}}</span>
-    <button type="button" @click="onDeleteTask">Remove</button>
-  </div>
+  <v-row align="center" justify="space-between" class="list-item">
+    <v-checkbox
+      v-model="task.isDone"
+      :label="task.name"
+      hide-details
+      class="checkbox"
+      :class="{ done: task.isDone }"
+    ></v-checkbox>
+    <v-btn text icon color="red" @click="onDeleteTask" class="removeButton">
+      <v-icon>clear</v-icon>
+    </v-btn>
+  </v-row>
 </template>
 
 <script>
@@ -13,13 +20,26 @@ export default {
   methods: {
     onDeleteTask() {
       this.$emit("deleteTask", this.task);
-    },
-    onToggleTask() {
-      this.$emit("toggleTask", this.task);
     }
   }
 };
 </script>
 
 <style scoped>
+.list-item {
+  margin: 0 !important;
+}
+.removeButton {
+  visibility: hidden;
+}
+.list-item:hover .removeButton {
+  visibility: visible;
+}
+.checkbox {
+  margin: 0;
+  padding: 0;
+}
+.done {
+  text-decoration: line-through;
+}
 </style>
